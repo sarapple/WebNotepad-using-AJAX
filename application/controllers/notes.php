@@ -24,7 +24,7 @@ class Notes extends CI_Controller
 	{
 		$oldnote=array($this->input->post('notecontent'), $this->input->post('id'));
         $this->load->model('note');
-        $this->note->updatenotedb($oldnote);
+        return $this->note->updatenotedb($oldnote);
 	} 
 	function deletenote()
 	{

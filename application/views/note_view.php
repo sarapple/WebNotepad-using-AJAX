@@ -5,43 +5,40 @@
 	<link rel="stylesheet" href="/assets/css/style.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script>
-		$(document).ready(function(){
-			//add note clicked
-			$('.postb').click(function(){
-				$.post(
-			        $('.createnote').attr('action'),
-			        $('.createnote').serialize(),
-					function(output){
-						$('#notes').prepend('<div class="note"><h3 class="title">' + output.title + '</h3><h3 class="right">X</h3><textarea class="changes" action="noteit">' + output.content + '</textarea></div>');
-					}, 'json'
-				);
-				return false;
-			});
-			//textarea note was updated
-			$('.changes').keyup(function(){
-				$.post(
-			        $(this).parent().attr('action'),
-			        $(this).parent().serialize(),
-					function(output){
-					}, 'json'
-				);
-				return false;
-			});
-			//delete was clicked
-			$('.right').click(function(){
-				var that = this;
-				$.post(
-			        $(that).parent().attr('action'),
-			        $(that).parent().serialize(),
-					function(output){
-						$(that).parent().parent().fadeOut(300, function(){
-							$(that).parent().parent().remove();
-						});	
-					}, 'json'
-				);
-				return false;
-			});					
+		$(document).on('click', '.postb', function(){
+			$.post(
+		        $('.createnote').attr('action'),
+		        $('.createnote').serialize(),
+				function(output){
+					$('#notes').prepend('<div class="note"><h3 class="title">' + output.title + '</h3><h3 class="right">X</h3><textarea class="changes" action="noteit">' + output.content + '</textarea></div>');
+				}, 'json'
+			);
+			return false;
 		});
+		//textarea note was updated
+		$(document).on('keyup', '.changes', function(){
+			$.post(
+		        $(this).parent().attr('action'),
+		        $(this).parent().serialize(),
+				function(output){
+				}, 'json'
+			);
+			return false;
+		});
+		//delete was clicked
+		$(document).on('click', '.right', function(){
+			var that = this;
+			$.post(
+		        $(that).parent().attr('action'),
+		        $(that).parent().serialize(),
+				function(output){
+					$(that).parent().parent().fadeOut(300, function(){
+					$(that).parent().parent().remove();
+					});	
+				}, 'json'
+			);
+			return false;
+		});					
 	</script>
 </head>
 <body>

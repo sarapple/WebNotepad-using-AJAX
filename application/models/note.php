@@ -11,7 +11,7 @@ class Note extends CI_Model
  	}
   	function updatenotedb($oldnote){
  		$query = "UPDATE notes SET content = ?, updated_at = NOW() WHERE id = ?";
-    	$this->db->query($query, $oldnote);
+    	return $this->db->query($query, $oldnote);
  	}
    	function deletenotedb($oldnote){
  		$query = "DELETE FROM notes WHERE id = ?";
