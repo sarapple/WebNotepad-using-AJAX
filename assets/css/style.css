@@ -1,0 +1,89 @@
+* {
+	margin: 0px;
+	padding: 0px;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+}
+a {
+    text-decoration: none;
+    color: RGB(66, 139, 203);
+}
+body {
+	margin: 0px auto;
+	width: 1200px;
+}
+.container {
+	margin: 0px auto;
+	padding: 5%;
+	width: 100%;
+	display: block;
+}
+	.row {
+		margin: 0px auto;
+		width: 50%;
+	    display: inline-block;
+	}
+		#notes {
+		    margin: 0px auto;
+		    width: 60%;
+		    height: 40%;
+		    min-width:.01%;
+		    display: block;
+		}
+			.note {
+				margin: 0px auto;
+				margin-bottom: 10%;
+				display: block;
+			}
+				.title {
+					display: inline;
+					padding-bottom: 4%;
+				}
+				.right {
+					float: right;
+					color: gray;
+					border: 2px solid #C8C8C8;
+					border-radius: 100%;
+					padding-left: 5px;
+					padding-right: 5px;
+					margin-bottom: 4%;
+				}
+				textarea {
+					width: 100%;
+					height: 100%;
+					padding: 2%;
+					font-size: 16px;
+					border-radius: .3em;
+					border: 2px solid #C8C8C8;
+					resize: none;
+				}
+		#addstuff {
+			vertical-align: top;
+		    margin: 0px auto;
+		    width: 35%;
+		    min-width:.01%;
+		    display: inline-block;
+		    position: fixed;
+		}
+		form {
+			margin: 0px auto;
+	        width: 100%;
+	        max-width:100%;
+	        margin: 10px auto;
+	        min-height: .01%;
+		}
+		form input[type=text]{
+			width: 100%;
+			height: 5%;
+			font-size: 15px;
+		    text-align: center;
+		}
+		form input[type=submit]{
+			margin-top:1%;
+			width: 100%;
+			height: 10%;
+			background-color: #479EE6;
+			color: white;
+			font-size: 15px;
+			border: 2px solid #87B7F3;
+			border-radius: .5em;
+		}
