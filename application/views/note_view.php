@@ -5,18 +5,31 @@
 	<link rel="stylesheet" href="/assets/css/style.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script>
+		//new post was created
 		$(document).on('click', '.postb', function(){
 			$.post(
 		        $('.createnote').attr('action'),
 		        $('.createnote').serialize(),
 				function(output){
-					$('#notes').prepend('<div class="note"><h3 class="title">' + output.title + '</h3><h3 class="right">X</h3><textarea class="changes" action="noteit">' + output.content + '</textarea></div>');
+					console.log(output);
+					$('#notes').prepend("" + 
+						"<div class='note'>" +
+							"<form class='deletenote' action='/notes/deletenote' method='post'>" +
+								"<input type='hidden' name='id' value='" + output.id + "'>" +
+								"<h3 class='title'>" + output.title + "</h3>" +
+								"<h3 class='right'>X</h3>" +
+							"</form>" +
+							"<form class='updatenote' action='/notes/updatenote' method='post'>" +
+								"<input type='hidden' name='id' value='" + output.id + "'>" +
+								"<textarea class='changes' name='notecontent' placeholder='Type something to update...'></textarea>" + 
+							"</form>" + 
+						"</div>");
 				}, 'json'
 			);
 			return false;
 		});
 		//textarea note was updated
-		$(document).on('keyup', '.changes', function(){
+		$(document).on('mouseleave', '.changes', function(){
 			$.post(
 		        $(this).parent().attr('action'),
 		        $(this).parent().serialize(),
@@ -46,6 +59,7 @@
 		<div class='row'>
 			<div id='notes'>
 <?php
+	if(isset($notes)){
 		foreach ($notes as $note) {														?>																																											
 				<div class='note'>
 					<form class='deletenote' action='/notes/deletenote' method='post'>
@@ -55,10 +69,11 @@
 					</form>
 					<form class='updatenote' action='/notes/updatenote' method='post'>
 						<input type='hidden' name='id' value='<?=$note['id']?>'>
-						<textarea class='changes' name='notecontent'><?=$note['content']?></textarea>
+						<textarea class='changes' name='notecontent' placeholder='Type something to update...'><?=$note['content']?></textarea>
 					</form>
 				</div>
-<?php  	}																				?>
+<?php  	}
+	}																					?>
 			</div>
 		</div>
 		<div id='addstuff'>
